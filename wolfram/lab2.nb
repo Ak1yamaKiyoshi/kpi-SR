@@ -1,0 +1,71 @@
+Notebook[{Cell[
+BoxData[{RowBox[{RowBox[{"(*",RowBox[{"Define"," ","input"," ","matrices"}],"*)"}],"\n",RowBox[
+{RowBox[{"matrixA"," ","="," ",RowBox[{"{",RowBox[{RowBox[{"{",RowBox[{"1.0",","," ","0.42",","," ","0.54",","," ","0.66"}],"}"}],","," ",RowBox[
+{"{",RowBox[{"0.42",","," ","1.",","," ","0.32",","," ","0.44"}],"}"}],","," ",RowBox[
+{"{",RowBox[{"0.54",","," ","0.32",","," ","1.",","," ","0.22"}],"}"}],","," ",RowBox[
+{"{",RowBox[{"0.66",","," ","0.44",","," ","0.22",","," ","1."}],"}"}]}],"}"}]}],";"}]}],"\n",RowBox[
+{RowBox[{"matrixB"," ","="," ",RowBox[{"{",RowBox[{RowBox[{"{","0.3","}"}],","," ",RowBox[
+{"{","0.5","}"}],","," ",RowBox[{"{","0.7","}"}],","," ",RowBox[{"{","0.9","}"}]}],"}"}]}],";"}]}],
+"Input",CellLabel -> "In[18]:= ",ExpressionUUID -> "537d7697-32f3-4eba-b862-fb5b11d4f618"],Cell[
+CellGroupData[
+{Cell[
+BoxData[{RowBox[{RowBox[{"(*",RowBox[{"Check"," ","if"," ","matrix"," ","is"," ","symmetric"}],"*)"}],"\n",RowBox[
+{RowBox[{"symmetricCheck"," ","="," ",RowBox[{"MatrixQ","[",RowBox[{"matrixA",","," ","SymmetricMatrixQ"}],"]"}]}],";"}]}],"\n",RowBox[
+{RowBox[{"Print","[",RowBox[{"\"Matrix symmetry check: \"",","," ","symmetricCheck"}],"]"}],";"}]}],
+"Input",CellLabel -> "In[20]:= ",ExpressionUUID -> "00329198-4d2a-40c1-997b-445b1afd95fa"],Cell[
+BoxData[
+InterpretationBox[RowBox[{"\"Matrix symmetry check: \"","\[InvisibleSpace]","False"}],
+SequenceForm["Matrix symmetry check: ",False],Editable -> False],StandardForm],"Print",
+ExpressionUUID -> "ebd89b07-2be6-49c9-bf17-50434001807b"]},Open],ExpressionUUID -> "1daba106-a2f3-4d63-b5d4-ab80c2ed0fde"],Cell[
+BoxData[
+RowBox[{RowBox[{"(*",RowBox[{"Solve"," ","using"," ","Gaussian"," ","elimination"}],"*)"}],"\n",RowBox[
+{RowBox[{"solution"," ","="," ",RowBox[{"LinearSolve","[",RowBox[{"matrixA",","," ","matrixB"}],"]"}]}],";"}]}]],
+"Input",CellLabel -> "In[22]:= ",ExpressionUUID -> "31e059b0-685d-4d99-a7d1-b394a0d337de"],Cell[
+CellGroupData[
+{Cell[
+BoxData[{RowBox[{RowBox[{"(*",RowBox[{"Print"," ","solution"}],"*)"}],"\n",RowBox[
+{RowBox[{"Print","[","\"Solution:\"","]"}],";"}]}],"\n",RowBox[{"MatrixForm","[","solution","]"}]}],
+"Input",CellLabel -> "In[35]:= ",ExpressionUUID -> "38875404-fd37-4b22-bce0-5873fb5a43e3"],Cell[
+BoxData[
+"\"Solution:\"",StandardForm],"Print",ExpressionUUID -> "cda4a78e-53de-425f-9f16-ccd3db1d0bb6"],Cell[
+BoxData[
+TagBox[RowBox[{"(","\[NoBreak]",GridBox[{{RowBox[{"-","1.2577937468862757`"}]},{"0.04348730439100157`"},{"1.0391662515033944`"},{"1.4823928836821545`"}},
+RowSpacings -> 1,ColumnSpacings -> 1,RowAlignments -> Baseline,ColumnAlignments -> Center],"\[NoBreak]",")"}],
+Function[BoxForm`e$,MatrixForm[BoxForm`e$]]],StandardForm],"Output",CellLabel -> "Out[36]//MatrixForm= ",
+ExpressionUUID -> "4a4a8df5-5f88-4beb-b0c5-782aaa62aa47"]},Open],ExpressionUUID -> "cf156365-d54f-443a-9c10-b0d85a49d13e"],Cell[
+CellGroupData[
+{Cell[
+BoxData[{RowBox[{RowBox[{"(*",RowBox[{"Residual"," ","vector"," ","calculation"}],"*)"}],"\n",RowBox[
+{RowBox[{"residualVector"," ","="," ",RowBox[{"matrixB"," ","-"," ",RowBox[{"matrixA",".","solution"}]}]}],";"}]}],"\n",RowBox[
+{RowBox[{"Print","[",RowBox[{"\"Residual vector: \"",","," ",RowBox[{"MatrixForm","[","residualVector","]"}]}],"]"}],";"}]}],
+"Input",CellLabel -> "In[25]:= ",ExpressionUUID -> "ec016b2e-6e7c-4eac-8d00-199d5ed87463"],Cell[
+BoxData[
+InterpretationBox[RowBox[{"\"Residual vector: \"","\[InvisibleSpace]",TagBox[RowBox[
+{"(","\[NoBreak]",GridBox[{{"0.`"},{"0.`"},{"0.`"},{"0.`"}},RowSpacings -> 1,ColumnSpacings -> 1,
+RowAlignments -> Baseline,ColumnAlignments -> Center],"\[NoBreak]",")"}],Function[
+BoxForm`e$,MatrixForm[BoxForm`e$]]]}],SequenceForm["Residual vector: ",MatrixForm[
+{{0.`},{0.`},{0.`},{0.`}}]],Editable -> False],StandardForm],"Print",ExpressionUUID -> "5e481c4b-0e3d-4afc-8506-cd5ef8d77e88"]},
+Open],ExpressionUUID -> "815b631c-3ce1-4227-8fd2-09fd51264bb5"],Cell[
+CellGroupData[
+{Cell[
+BoxData[{RowBox[{RowBox[{"(*",RowBox[{"MSE"," ","calculation"}],"*)"}],"\n",RowBox[
+{RowBox[{"mse"," ","="," ",RowBox[{"Sqrt","[",RowBox[{"Mean","[",RowBox[{"residualVector","^","2"}],"]"}],"]"}]}],";"}]}],"\n",RowBox[
+{RowBox[{"Print","[",RowBox[{"\"MSE: \"",","," ","mse"}],"]"}],";"}]}],"Input",CellLabel -> "In[31]:= ",
+ExpressionUUID -> "f20f5101-415f-4d42-a778-aab23ae4502c"],Cell[
+BoxData[InterpretationBox[
+RowBox[{"\"MSE: \"","\[InvisibleSpace]",RowBox[{"{","0.`","}"}]}],SequenceForm["MSE: ",
+{0.`}],Editable -> False],StandardForm],"Print",ExpressionUUID -> "d35f010e-8814-4afb-bc19-8247ab4f8d71"]},
+Open],ExpressionUUID -> "0e977253-4146-4ab2-82ed-63c53b2341e8"],Cell[
+CellGroupData[
+{Cell[
+BoxData[{RowBox[{RowBox[{"(*",RowBox[{"Output"," ","matrix"," ","demo"}],"*)"}],"\n",RowBox[
+{RowBox[{"Print","[","\"Output matrix:\"","]"}],";"}]}],"\n",RowBox[{"MatrixForm","[","solution","]"}]}],
+"Input",CellLabel -> "In[33]:= ",ExpressionUUID -> "bd457f0f-2633-4459-a5c2-c015e9454c61"],Cell[
+BoxData[
+"\"Output matrix:\"",StandardForm],"Print",ExpressionUUID -> "6401391f-cdd6-4b63-846a-70f31b56aa7f"],Cell[
+BoxData[
+TagBox[RowBox[{"(","\[NoBreak]",GridBox[{{RowBox[{"-","1.2577937468862757`"}]},{"0.04348730439100157`"},{"1.0391662515033944`"},{"1.4823928836821545`"}},
+RowSpacings -> 1,ColumnSpacings -> 1,RowAlignments -> Baseline,ColumnAlignments -> Center],"\[NoBreak]",")"}],
+Function[BoxForm`e$,MatrixForm[BoxForm`e$]]],StandardForm],"Output",CellLabel -> "Out[34]//MatrixForm= ",
+ExpressionUUID -> "cea8b264-5fe6-40b7-9406-a54324114c7c"]},Open],ExpressionUUID -> "abda3192-0dd0-4048-af57-80a4ebcf39e5"]},
+StyleDefinitions -> "Default.nb",FrontEndVersion -> "14. for Wolfram Cloud 1.68 (February 7, 2024)"]
