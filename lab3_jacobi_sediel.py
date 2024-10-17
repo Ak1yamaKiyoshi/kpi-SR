@@ -41,6 +41,7 @@ def jacobi(a, b, epsilon=1e-5, max_iterations=1000):
         if np.max(np.abs(x_new - x)) < epsilon:
             return x_new
         x = x_new
+        # непанятна 
     
     return x 
 
@@ -57,7 +58,7 @@ def zeidel(a, b):
             sum1 = sum(a[i,j] * x_new[j] for j in range(i))
             sum2 = sum(a[i,j] * x[j] for j in range(i+1, n))
             x_new[i] = (b[i] - sum1 - sum2) / a[i,i]
-        
+        # непанятна 
         if np.max(np.abs(x_new - x)) < epsilon:
             break
         x = x_new
