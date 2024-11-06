@@ -109,8 +109,29 @@ def runga(f, t0, x0, dt, total_steps, tolerance=1e-5 ):
     return np.array(t_hist), np.array(x_hist)
 
 
+def adams_method(f, x0, y0, dt, n):
+    h = dt
+    xf = n * dt + x0
+    n = int(n)
+    x = np.linspace(x0, xf, n + 1)
+    y = np.zeros(n + 1)
+    y[0] = y0
 
+    for i in range(3):
+        k1 = h * f(x[i], y[i])
+        k2 = h * f(x[i] + h/2, y[i] + k1/2)
+        k3 = h * f(x[i] + h/2, y[i] + k2/2)
+        k4 = h * f(x[i] + h, y[i] + k3)
+        y[i+1] = y[i] + (k1 + 2*k2 + 2*k3 + k4) / 6
 
+    for i in range(3, n):
+        y_pred = y[i] + h/24 * (55*f(x[i], y[i]) - 59*f(x[i-1], y[i-1]) + 
+                                37*f(x[i-2], y[i-2]) - 9*f(x[i-3], y[i-3]))
+
+        y[i+1] = y[i] + h/24 * (9*f(x[i+1], y_pred) + 19*f(x[i], y[i]) - 
+                                5*f(x[i-1], y[i-1]) + f(x[i-2], y[i-2]))
+
+    return x, y
 
 b = 1.0  
 y_range = (-1.2, 1.2)
@@ -122,7 +143,7 @@ create_phase_portrait(f_prime, y_range, x_range)
 
 stepsize = 0.001
 x0, y0 = 0.0, 1
-x, y = runga(f_prime, x0, y0, stepsize, b//stepsize)
+x, y = adams_method(f_prime, x0, y0, stepsize, b//stepsize)
 
 plt.figure(figsize=(10, 6))
 plt.plot(x, y, '.', marker="x", markersize=4)
