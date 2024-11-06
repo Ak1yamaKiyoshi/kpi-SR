@@ -43,7 +43,7 @@ def printer(
     
     out = ""
     if print_text:
-        out += text + "\n"
+        out += text + ANSI.Styles.RESET + "\n"
     if print_description:
         out += descriptions + ""
     out += mat_str

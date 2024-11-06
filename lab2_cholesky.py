@@ -31,13 +31,14 @@ h_kj = highlight([], ANSI.FG.CYAN  , 0, "u[k, j] at else case")
 
 for i in range(n):
     for j in range(i, n):
-        if i == j:
-            sum = np.sum([u[k, i]**2 for k in range(i)])
-            u[i, i] = np.sqrt(a[i, i] - sum)
+        if i == j: 
+            sum = np.sum([u[k, i]**2 for k in range(i)]) 
+            u[i, i] = np.sqrt(a[i, i] - sum) # що таке матриця U, та звідки береться сумма , чому тут записуємо саме діагональ 
             h_ij.indicies.append((i, i)) # for printing purpose
         else:
+            # що таке матриця U та звідки береться сумма 
             sum = np.sum([u[k, i] * u[k, j] for k in range(i)])
-            u[i, j] = (a[i, j] - sum) / u[i, i]
+            u[i, j] = (a[i, j] - sum) / u[i, i]  # чому тут верхня трикутна матриця 
 
             # for printing purpose
             for k in range(i):
@@ -61,8 +62,8 @@ print(printer(
 # T'y = b
 y = np.zeros_like(b)
 for i in range(n):
-    sum = np.sum([u[k, i] * y[k] for k in range(i)])
-    y[i] = (b[i] - sum) / u[i, i]
+    sum = np.sum([u[k, i] * y[k] for k in range(i)]) 
+    y[i] = (b[i] - sum) / u[i, i] # які елементи використовуються, чому використовується діагональ матриці U 
 
 print(printer(
         y.reshape(-1, 1), default_style=ANSI.FG.GREEN,
@@ -87,3 +88,5 @@ print(printer(
         a - u.T @ u, default_style=ANSI.Styles.ITALIC, formatting=".6f",
         text=f"{ANSI.Styles.BOLD}{counter.str()}a - u.T @ u {ANSI.Styles.RESET}"), "\n")
 
+# що таке вектор нев'язки 
+# чому a - U.T @ u повинно дорівнювати 0 

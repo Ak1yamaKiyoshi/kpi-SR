@@ -1,18 +1,9 @@
 
-   # | code | fancy prints | mathcad  | report | 
-lab2 | done |     done     |    -     |   -    |
-lab3 |      |       -      |    -     |   -    | 
-lab4 |      |       -      |    -     |   -    | 
-lab5 |      |       -      |    -     |   -    | 
-lab7 |      |       -      |    -     |   -    |
-lab8 |      |       -      |    -     |   -    |
+/    | код  | передпрограмний етап | візуалізація | відповіді на питання  | маткад  | звіт  |
+lab2 | так  |        так           |     так      |          ні           |   ні    |  ні   |
+lab3 | так  |        ні            |     так      |          ні           |   ні    |  ні   | 
+lab4 | так  |        так           |     так      |          ні           |   ні    |  ні   | 
+lab5 | так  |        ні            |     так      |          ні           |   ні    |  ні   | 
+lab7 | так  |        так           |     так      |          ні           |   ні    |  ні   |
+lab8 | +-   |                      |       -      |          ні           |   ні    |  ні   |
 
-
-
-
-2 code cholesky done, mathcad - 
-3 code (jacobi done, zeidel done), mathcad - 
-4 code (done), mathcad - 
-5 ? 
-7 code (trapezoidal done, gaussian done), mathcad - 
-8 code (rk done, adams not), mathcad -
