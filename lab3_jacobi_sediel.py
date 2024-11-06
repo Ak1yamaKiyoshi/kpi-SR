@@ -23,7 +23,6 @@ matrix_a = np.array([[5.79, 0.42, 1.34, 0.88],
   [1.34, 1.87, 6.65, 0.46],
   [0.88, 0.43, 0.46, 8.11]])
 
-# print(f"# a is strictly diagonally dominant: {YELLOW}{is_strictly_diagonally_dominant(a)}{RESET} ")
 a = matrix_a.copy()
 b = vector_b.copy()
 n = a.shape[0] 
@@ -35,14 +34,12 @@ def jacobi(a, b, epsilon=1e-5, max_iterations=1000):
     iteration_matrix = np.eye(n) - D_inv @ a
     iteration_vector = D_inv @ b
     x = np.zeros_like(b)
-    
+
     for _ in range(max_iterations):
         x_new = iteration_matrix @ x + iteration_vector
         if np.max(np.abs(x_new - x)) < epsilon:
             return x_new
         x = x_new
-        # непанятна 
-    
     return x 
 
 
@@ -69,5 +66,3 @@ print("jacobi: ")
 print(a@jacobi(a, b)-b)
 print("zeidel:")
 print(a@zeidel(a, b)-b)
-
-

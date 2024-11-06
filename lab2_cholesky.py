@@ -49,10 +49,14 @@ print(printer(a,
         print_description=True, default_style=ANSI.FG.BRIGHT_BLACK), "\n")
 print(printer(
         u, formatting="5.2f", higlights=[h_ki], default_style=ANSI.FG.BRIGHT_BLACK, print_description=True,
-        text=f"{ANSI.Styles.BOLD}{counter.str()}matrix U{ANSI.Styles.RESET}"), "\n")
+        text=f"{ANSI.Styles.BOLD}{counter.str()}matrix U (during decomposition){ANSI.Styles.RESET}"), "\n")
 print(printer(
         u, formatting="5.2f", higlights=[h_kj], default_style=ANSI.FG.BRIGHT_BLACK, print_description=True,
+        text=f"{ANSI.Styles.BOLD}{counter.str()}matrix U (during decomposition){ANSI.Styles.RESET}"), "\n")
+print(printer(
+        u, formatting="5.2f", default_style=ANSI.Styles.ITALIC,
         text=f"{ANSI.Styles.BOLD}{counter.str()}matrix U{ANSI.Styles.RESET}"), "\n")
+
 
 # T'y = b
 y = np.zeros_like(b)
