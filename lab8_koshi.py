@@ -186,10 +186,6 @@ def f(x: float, y: float) -> float:
     b = 1.0 + 0.4 * (10 - 5)
     return np.exp(-a*x) * (y**2 + b)
 
-def f2(x: float, y: np.ndarray) -> np.ndarray:
-    y0, y1 = y
-    return np.array([y1, -y0 + (10 - 10)/10 * y1])
-
 # Взяти  крок  h  =  0,1.    Якщо  вимоги  на  величину  τ  (див.  метод  Рунге-Кутта)  для  даного  кроку  не  виконано,  подрібнити  крок.  Початкові  умови  y(0)=0.  Відрізок,  що розглядається: [0; 1]
 
 import matplotlib.pyplot as plt 
@@ -213,14 +209,21 @@ scipy_rk45_x = sol.y[0]
 
 
 interpolated_adapt_x = get_closest_values(rk_adapt_times, rk_adapt_x, rk_fixed_times)
+interpolated_adapt_errors = get_closest_values(errors_adapt, errors_fixed, rk_fixed_times)
 indices_to_print = np.linspace(0, len(rk_fixed_times)-1, 10, dtype=int)
 
 print(f"  {'Time':<10} | {'rk_fixed_x':<15} | {'rk_adapt_x':<15} | {'adams method':<15} | {'scipy rk45':<15}")
 print(f"{'-' * (10+15+15+15 + 10 + 15 + 10)}")
 for idx in indices_to_print:
     print(f"  {rk_fixed_times[idx]:<10.2f} | {rk_fixed_x[idx]:<15.4f} | {interpolated_adapt_x[idx]:<15.4f} | {adams_x[idx]:<15.4f} | {scipy_rk45_x[idx]:<15.4f}") 
-    
-    
+
+
+print(f"\n\n  {'Time':<10} | {'rk_fixed error':<15} | {'rk_adapt error':<15} | {'adams error':<15}")
+print(f"{'-' * (10+15+15+15 + 10 + 15 + 10)}")
+for idx in indices_to_print:
+    print(f"  {errors_fixed[idx]:<10.2f} | {errors_fixed[idx]:<15.6f} | {interpolated_adapt_errors[idx]:<15.6f} | {errors_adams[idx]:<15.6f}") 
+
+
 fig, ax = plt.subplots(3, 1, figsize=(10, 18))
 ax[0].plot(rk_adapt_times, errors_adapt, label="похибка вимірювання для rk4 adaptive", linestyle='-', color='blue')
 ax[0].plot(rk_fixed_times, errors_fixed, label="похибка вимірювання для rk4 fixed", linestyle='--', color='green')
@@ -247,5 +250,19 @@ ax[2].plot(rk_fixed_times, diff_rk_adapt, marker="v", linestyle="--", markersize
 ax[2].set_title("Фактична похибка відносно numpy")
 ax[2].legend(loc='best', fontsize=10)
 ax[2].grid(True)
-# plt.tight_layout()
+plt.show()
+
+
+# Розв’язати за допомогою Mathcad систему диференціальних рівнянь
+
+def f2(x, y: np.ndarray) -> np.ndarray:
+    y0, y1 = y
+    return np.array([y1, -y0 + (10 - 10)/10 * y1])
+
+t = 0.0
+
+
+x = np.array([0.1, 0.0])
+times, solution, errors = rk4_fixed(f2, t, x, 0.1, 1000)
+plt.plot(np.diff(solution[:, 0]), np.diff(solution[:, 1]))
 plt.show()
