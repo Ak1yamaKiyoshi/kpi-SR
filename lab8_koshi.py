@@ -253,7 +253,6 @@ ax[2].grid(True)
 plt.show()
 
 
-# Розв’язати за допомогою Mathcad систему диференціальних рівнянь
 
 def f2(x, y: np.ndarray) -> np.ndarray:
     y0, y1 = y
@@ -263,35 +262,6 @@ t = 0.0
 
 
 x = np.array([0.1, 0.0])
-times, solution, errors = rk4_fixed(f2, t, x, 0.1, 1000)
+times, solution, errors = rk4_fixed(f2, t, x, 0.1, 10)
 plt.plot(np.diff(solution[:, 0]), np.diff(solution[:, 1]))
 plt.show()
-
-
-
-def plot_fancy_phase_portrait(f2):
-    import matplotlib.pyplot as plt
-    x = np.array([0.1, 0.0]) 
-    x_vals = np.linspace(-3.0, 3.0, 30)
-    y_vals = np.linspace(-3.0, 3.0, 30)
-    X, Y = np.meshgrid(x_vals, y_vals)
-    u, v = np.zeros_like(X), np.zeros_like(X)
-    NI, NJ = X.shape
-
-    for i in range(NI):
-        for j in range(NJ):
-            x, y = X[i, j], Y[i, j]
-            fp = f2(0, [x, y])
-            u[i, j] = fp[0]  # dx/dt
-            v[i, j] = fp[1]  # dy/dt
-
-    speed = np.sqrt(u**2 + v**2)  # Magnitude of the velocity at each point
-    plt.streamplot(X, Y, u, v, color=speed, linewidth=1, cmap='coolwarm')
-    plt.axis('square')
-    plt.axis([-3, 3, -3, 3])
-    plt.xlabel('x')
-    plt.ylabel('y')
-    plt.legend()
-    plt.show()
-
-plot_fancy_phase_portrait(f2)

@@ -15,6 +15,8 @@ t_span = (0, 5)
 # Solve the Cauchy problem
 solution = solve_ivp(dydt, t_span, y0, method='RK45', t_eval=np.linspace(0, 5, 100))
 
+
+
 # Extract time and solution
 t = solution.t
 y = solution.y[0]
