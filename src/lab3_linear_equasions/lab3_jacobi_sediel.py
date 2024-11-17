@@ -46,8 +46,6 @@ def jacobi(a, b, epsilon=1e-5, max_iterations=1000):
     iteration_matrix = np.eye(n) - D_inv @ a
     iteration_vector = D_inv @ b
     x = np.zeros_like(b)
-    
-    # що таке ітераційна матриця та вектор, чому вони використовуються, звідки беруться, чому саме такі.  
 
     __print_highlights_diag = [highlight([(i, i) for i in range(a.shape[0])], ANSI.FG.BLUE, 1, f"{ANSI.Styles.BOLD}Diagonal ")]
     __print_highlights_not_diag = [highlight([(i, i) for i in range(a.shape[0])], ANSI.FG.BRIGHT_BLACK, 1, f"{ANSI.Styles.BOLD}Diagonal ")]
@@ -64,8 +62,7 @@ def jacobi(a, b, epsilon=1e-5, max_iterations=1000):
         __print_strouput += printer(x_new.reshape(-1, 1), f"{ANSI.Styles.BOLD}       -> x, with change (x_new - x) {ANSI.FG.RED} {error:0.5f} ", [], "+0.5f", default_style=ANSI.Styles.ITALIC+ANSI.FG.BRIGHT_BLACK, pre_row_str="           ") 
 
         if error < epsilon:
-           # __print_strouput += "\n" + printer((a @ x_new - b).reshape(-1, 1), f"\n\n{ANSI.Styles.BOLD} (jacobi) a @ x - b {ANSI.Styles.RESET}", formatting= "+0.5f") + "\n"
-            __print_strouput += printer((a @ x_new - b).reshape(-1, 1), f"\n\n{ANSI.Styles.BOLD} (jacobi) a @ x - b, change (x_new - x): {ANSI.FG.RED} {error:0.5f}{ANSI.Styles.RESET}, {ANSI.FG.BLUE}epsilon: {epsilon:0.5f}", default_style=ANSI.FG.GREEN+ANSI.Styles.ITALIC, formatting="0.5f")
+            __print_strouput += printer((a @ x_new - b).reshape(-1, 1), f"\n\n{ANSI.Styles.BOLD} (jacobi) a @ x - b, change (x_new - x): {ANSI.FG.RED} {error:0.5f}{ANSI.Styles.RESET}", default_style=ANSI.FG.GREEN+ANSI.Styles.ITALIC, formatting="0.5f")
             
             print(__print_strouput)
             

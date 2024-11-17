@@ -45,6 +45,7 @@ print(matrix_a)
 print("\nВектор b:")
 print(vector_b)
 
+print("") 
 multiplier = 1/6
 matrix_a[0] = matrix_a[0] - multiplier * matrix_a[3]
 vector_b[0] = vector_b[0] - multiplier * vector_b[3]
